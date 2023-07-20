@@ -20,7 +20,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'no-unused-vars': 'warn',
-    'no-console': 'error',
+    'no-console': ["error", { allow: ["warn", "error"] }],
     'no-tabs': ['error', { allowIndentationTabs: true }],
     semi: 'off',
     'space-before-function-paren': 'off',
