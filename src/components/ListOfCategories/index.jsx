@@ -13,7 +13,7 @@ export const ListOfCategories = () => {
       <List fixed={fixed ? 1 : 0}>
         {categories.map((category) => (
           <Item key={category.id}>
-            <Category emoji={category.emoji} category={category.name} cover={category.cover} />
+            <Category emoji={category.emoji} category={category.name} cover={category.cover} path={`/category/${category.id}`}/>
           </Item>
         ))}
       </List>)

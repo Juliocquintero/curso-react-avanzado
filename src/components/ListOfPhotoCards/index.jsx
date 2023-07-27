@@ -1,13 +1,18 @@
 import React from 'react'
 import { PhotoCard } from "../PhotoCard"
+import useGetPhotos from "../../hooks/useGetPhotos"
+import Loader from "../Loader"
 
-export const ListOfPhotoCards = () => {
+
+export const ListOfPhotoCards = ({ categoryId }) => {
+  const { photos, loading } = useGetPhotos(categoryId)
+  if (loading) return <Loader />
   return (
     <ul>
       {
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((card =>
-          <li key={card}>
-            <PhotoCard id={card}/>
+        photos?.map((card =>
+          <li key={card.id}>
+            <PhotoCard id={card.id} src={card.src} likes={card.likes} />
           </li>
 
         ))
@@ -17,3 +22,4 @@ export const ListOfPhotoCards = () => {
     </ul>
   )
 }
+

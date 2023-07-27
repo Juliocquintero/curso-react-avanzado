@@ -8,7 +8,7 @@ const useCategoryData = () => {
   const getCategories = async () => {
     setLoading(true)
     try {
-      const URL = 'https://petgram-server-jq-juliocquintero.vercel.app/categories'
+      const URL = 'https://curso-react-avanzado-server.vercel.app/categories'
       const resp = await axios.get(URL)
       const data = await resp.data
       setCategories(data)

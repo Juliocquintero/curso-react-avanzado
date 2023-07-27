@@ -1,14 +1,23 @@
-import { GlobalStyle } from './components/styles/GlogalStyles';
-import { ListOfCategories } from './components/ListOfCategories';
-import { ListOfPhotoCards } from "./components/ListOfPhotoCards";
-import { Logo } from "./components/Logo";
+import { BrowserRouter } from "react-router-dom";
+
+import Layout from "./Layout";
+import Router from "./router/Router";
+import AuthProvider from "./hoc/AuthContext/Provider";
+
 function App() {
+
   return (
     <>
-      <GlobalStyle />
-      <Logo />
-      <ListOfCategories />
-      <ListOfPhotoCards />
+      <AuthProvider>
+        <BrowserRouter>
+          <Layout>
+            <Router />
+
+          </Layout>
+        </BrowserRouter>
+      </AuthProvider>
+
+
     </>
   );
 }
