@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import useGetFavs from '../hooks/useGetFavs';
+import { Link } from 'react-router-dom';
+import { ListOfFavorites } from '../components/ListOfFavs';
 
 const Favorites = () => {
-  return (
-    <div>Favorites</div>
-  )
-}
+	const { photos } = useGetFavs();
 
-export default Favorites
+	return (
+		<div>
+			<ListOfFavorites favs={photos} />
+		</div>
+	);
+};
+
+export default Favorites;

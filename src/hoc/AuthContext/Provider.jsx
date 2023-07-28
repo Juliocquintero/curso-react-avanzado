@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { authContext } from './AuthContext';
+
+import { useApolloClient } from "@apollo/client";
+
 const fakeAuth = {
 	isAuthenticated: false,
 	login(cb) {
@@ -20,7 +23,8 @@ function useProvideAuth() {
 			return null;
 		}
 	});
-
+  
+  const client = useApolloClient();
 	const login = (cb, token) => {
 		return fakeAuth.login(() => {
 			setUser({
@@ -37,6 +41,7 @@ function useProvideAuth() {
 			setUser(null);
 			cb();
 			window.sessionStorage.removeItem('token');
+      client.resetStore()
 		});
 	};
 
