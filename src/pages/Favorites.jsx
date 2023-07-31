@@ -1,15 +1,19 @@
 import React from 'react';
 import useGetFavs from '../hooks/useGetFavs';
-import { Link } from 'react-router-dom';
 import { ListOfFavorites } from '../components/ListOfFavs';
+import MetaAttributes from '../components/MetaAttributes';
 
 const Favorites = () => {
 	const { photos } = useGetFavs();
 
 	return (
-		<div>
+		<>
+			<MetaAttributes
+				title=' Petgram | Favoritos'
+				description='En esta sección encontrarás tus foto favoritas'
+			/>
 			<ListOfFavorites favs={photos} />
-		</div>
+		</>
 	);
 };
 

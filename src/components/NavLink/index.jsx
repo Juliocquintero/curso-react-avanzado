@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from "./styles"
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from "./styles"
 
 const NavLink = ({ to, children }) => {
   const location = useLocation();
@@ -12,5 +13,10 @@ const NavLink = ({ to, children }) => {
     </Link>
   )
 }
+
+NavLink.propTypes = {
+	to: PropTypes.string,
+	children: PropTypes.node,
+};
 
 export default NavLink

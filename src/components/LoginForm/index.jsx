@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useInputValue from '../../hooks/useInputValue';
 import { Button, Form, Input, Title } from './style';
 
@@ -33,3 +34,9 @@ const LoginForm = ({ handleSubmit, title, disabled }) => {
 };
 
 export default LoginForm;
+
+LoginForm.propTypes = {
+	handleSubmit: PropTypes.func.isRequired,
+	disabled: PropTypes.bool,
+	title: PropTypes.string.isRequired,
+};

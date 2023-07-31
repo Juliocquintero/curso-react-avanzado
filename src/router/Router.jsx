@@ -1,44 +1,50 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from '../pages/Home';
-import Details from '../pages/Details';
-import User from '../pages/User';
-import Favorites from '../pages/Favorites';
 
 import ProtectedRoute from './ProtectedRoute';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+
 import NotFound from '../pages/NotFound';
+import Loader from "../components/Loader";
+
+const Favorites = lazy(() => import('../pages/Favorites'));
+const User = lazy(() => import('../pages/User'));
+const Details = lazy(() => import('../pages/Details'));
+
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
 
 const Router = () => {
 	return (
-		<Routes>
-			<Route element={<Home />} path='/category/:categoryId' />
-			<Route element={<Details />} path='/detail/:detailId' />
+		<Suspense fallback={<Loader />}>
+			<Routes>
+				<Route element={<Home />} path='/category/:categoryId' />
+				<Route element={<Details />} path='/detail/:detailId' />
 
-			<Route
-				element={
-					<ProtectedRoute>
-						<User />
-					</ProtectedRoute>
-				}
-				path='/user'
-			/>
-			<Route
-				element={
-					<ProtectedRoute>
-						<Favorites />
-					</ProtectedRoute>
-				}
-				path='/favs'
-			/>
+				<Route
+					element={
+						<ProtectedRoute>
+							<User />
+						</ProtectedRoute>
+					}
+					path='/user'
+				/>
+				<Route
+					element={
+						<ProtectedRoute>
+							<Favorites />
+						</ProtectedRoute>
+					}
+					path='/favs'
+				/>
 
-			<Route element={<Login />} path='/login' />
-			<Route element={<Register />} path='/register' />
-			<Route element={<Home />} path='/' />
-			<Route element={<NotFound />} path='*' />
-		</Routes>
+				<Route element={<Login />} path='/login' />
+				<Route element={<Register />} path='/register' />
+				<Route element={<Home />} path='/' />
+				<Route element={<NotFound />} path='*' />
+			</Routes>
+		</Suspense>
 	);
 };
 
