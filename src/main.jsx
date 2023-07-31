@@ -17,7 +17,6 @@ const httpLink = createHttpLink({
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-	console.log(graphQLErrors, networkError);
 	if (graphQLErrors)
 		graphQLErrors.forEach(({ message, locations, path }) =>
 			console.log(
@@ -38,7 +37,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-	link: from([authLink.concat(httpLink), errorLink]),
+	link: from([authLink, errorLink, httpLink]),
 	cache: new InMemoryCache(),
 });
 
